@@ -2,5 +2,5 @@ class AthleteEvent < ApplicationRecord
   belongs_to :athlete
   belongs_to :event
 
-  enum medal: [ :none, :bronze, :silver, :gold ]
+  enum medal: [ :nah, :bronze, :silver, :gold ]
 end
