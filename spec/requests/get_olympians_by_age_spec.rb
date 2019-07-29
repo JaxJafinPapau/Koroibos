@@ -21,9 +21,9 @@ describe "GET api/v1/olympians" do
         olympian = JSON.parse(response.body)
         
         expect(olympian).to be_a(Hash)
-        expect(olypmian['olympian'].first['id']).to eq(winner.id)
-        expect(olympian['olympian'].first['age']).to eq(3)
-        expect(olympian['olympian'].first['sport']).to eq('Underwater Basket Weaving')
+        expect(olympian['olympians'].first['id']).to eq(winner.id)
+        expect(olympian['olympians'].first['age']).to eq(3)
+        expect(olympian['olympians'].first['sport']).to eq('Underwater Basket Weaving')
     end
 
     #sad path
