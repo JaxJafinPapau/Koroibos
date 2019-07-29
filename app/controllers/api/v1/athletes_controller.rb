@@ -1,9 +1,9 @@
 class Api::V1::AthletesController < ApplicationController
     def index
         if params['age'] == "youngest"
-            olympians = Athlete.order(age: :asc).limit(1)
+            olympians = Athlete.order(age: :asc).limit(1).map { |a| serialize_athlete(a) }
         elsif params['age'] == "oldest"
-            olympians = Athlete.order(age: :desc).limit(1)
+            olympians = Athlete.order(age: :desc).limit(1).map { |a| serialize_athlete(a) }
         elsif !params['age']
             olympians = Athlete.all.map do |athlete|
                 serialize_athlete(athlete)

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :athletes, only: [:index], path: 'olympians'
+      resources :statistics, onkly: [:index], path: 'olympian_stats'
     end
   end
 end
