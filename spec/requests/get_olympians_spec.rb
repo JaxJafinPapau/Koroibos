@@ -24,4 +24,14 @@ describe "GET api/v1/olympians" do
         expect(olympians['olympians'].second['total_medals_won']).to eq(0)
         expect(olympians['olympians'].sample['sport']).to eq('Underwater Basket Weaving')
     end
+
+    #sad path
+    
+    it 'should return 404 with proper error with no athletes' do
+        get '/api/v1/olympians'
+        
+        error = JSON.parse(response.body)
+
+        expect(error['error']).to eq("No Olympians found.")
+    end
 end
