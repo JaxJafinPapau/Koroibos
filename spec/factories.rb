@@ -12,4 +12,12 @@ FactoryBot.define do
     games { "2016 Summer" }
     sport { "Underwater Basket Weaving" }
   end
+
+  sequence :event_name do |n|
+    "Test event #{n}"
+  end
+
+  factory :event do
+    name {generate :event_name}
+  end
 end
