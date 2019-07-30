@@ -23,4 +23,8 @@ class Athlete < ApplicationRecord
     def self.mean_age
         average(:age)
     end
+    
+    def self.all_unique_sports
+        pluck(:sport).uniq
+    end
 end
