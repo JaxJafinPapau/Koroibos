@@ -4,8 +4,8 @@ class Athlete < ApplicationRecord
 
     validates :name, presence: true, uniqueness: true
 
-    def total_medals_won
-        athlete_events.where.not(medal: "na").count
+    def self.with_total_medals_won
+        find_by_sql("SELECT SUM(CASE WHEN ae.medal = 0 THEN 0 ELSE 1 END) AS total_medals, a.* FROM athletes a INNER JOIN athlete_events ae ON ae.athlete_id = a.id GROUP BY a.id")
     end
 
     def self.total_olympians
@@ -26,5 +26,13 @@ class Athlete < ApplicationRecord
     
     def self.all_unique_sports
         pluck(:sport).uniq
+    end
+
+    def self.oldest_or_youngest(param)
+        if param == "youngest"
+            order(age: :asc).limit(1)
+        elsif param == "oldest"
+            order(age: :desc).limit(1)
+        end
     end
 end

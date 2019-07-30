@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_28_233602) do
+ActiveRecord::Schema.define(version: 2019_07_30_220527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_07_28_233602) do
   create_table "athlete_events", force: :cascade do |t|
     t.bigint "athlete_id"
     t.bigint "event_id"
-    t.integer "medal"
+    t.integer "medal", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["athlete_id"], name: "index_athlete_events_on_athlete_id"

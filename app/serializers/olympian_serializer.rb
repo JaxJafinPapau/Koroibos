@@ -5,7 +5,7 @@ class OlympianSerializer
         @team = athlete[:team]
         @age = athlete[:age]
         @sport = athlete[:sport]
-        @total_medals_won = athlete.total_medals_won
+        @total_medals_won = athlete[:total_medals]
     end
 
     def serialize
