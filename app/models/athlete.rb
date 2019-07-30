@@ -27,4 +27,12 @@ class Athlete < ApplicationRecord
     def self.all_unique_sports
         pluck(:sport).uniq
     end
+
+    def self.oldest_or_youngest(param)
+        if param == "youngest"
+            order(age: :asc).limit(1)
+        elsif param == "oldest"
+            order(age: :desc).limit(1)
+        end
+    end
 end
