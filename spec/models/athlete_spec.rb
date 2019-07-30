@@ -9,21 +9,4 @@ RSpec.describe Athlete, type: :model do
     it {should validate_presence_of :name}
     it {should validate_uniqueness_of :name}
   end
-
-  describe 'Instance Methods' do
-    it '.total_medals_won' do
-      create_list(:athlete, 2)
-      create_list(:event, 3)
-
-      winner = Athlete.first
-      loser = Athlete.second
-      winner.events << Event.first
-      winner.events << Event.second
-      loser.events << Event.third
-      winner.athlete_events.first.update(medal: 1)
-
-      expect(winner.total_medals_won).to eq(1)
-      expect(loser.total_medals_won).to eq(0)
-    end
-  end
 end
