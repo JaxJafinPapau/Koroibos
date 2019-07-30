@@ -5,9 +5,7 @@ class Api::V1::AthletesController < ApplicationController
         elsif params['age'] == "oldest"
             olympians = Athlete.order(age: :desc).limit(1).map { |a| serialize_athlete(a) }
         elsif !params['age']
-            olympians = Athlete.all.map do |athlete|
-                serialize_athlete(athlete)
-            end
+            olympians = Athlete.with_total_medals_won
         end
         render status: 200, json: { olympians: olympians } if olympians.first
         render status: 404, json: { error: "No Olympians found."} if !olympians.first
@@ -15,7 +13,7 @@ class Api::V1::AthletesController < ApplicationController
 
     private
 
-        def serialize_athlete(athlete)
+        def serialize_athlete(athlete)!!!
             olympian = OlympianSerializer.new(athlete)
             olympian.serialize
         end
