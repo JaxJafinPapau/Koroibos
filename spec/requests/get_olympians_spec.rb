@@ -25,14 +25,14 @@ describe "GET api/v1/olympians" do
 
         olympians = JSON.parse(response.body)
         medalist = olympians['olympians'].find do |o|
-            o["total_medals"] == 1
+            o["total_medals_won"] == 1
         end
-
+        
         expect(olympians).to be_a(Hash)
         expect(olympians['olympians'].count).to eq(5)
         expect(medalist['id']).to eq(winner.id)
-        expect(olympians['olympians'].second['total_medals']).to be_a(Integer)
-        expect(olympians['olympians'].third['total_medals']).to be_a(Integer)
+        expect(olympians['olympians'].second['total_medals_won']).to be_a(Integer)
+        expect(olympians['olympians'].third['total_medals_won']).to be_a(Integer)
         expect(olympians['olympians'].sample['sport']).to eq('Underwater Basket Weaving')
     end
 
