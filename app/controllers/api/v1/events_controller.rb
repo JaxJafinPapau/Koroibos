@@ -6,10 +6,14 @@ class Api::V1::EventsController < ApplicationController
     end
 
     def show
-        event_id = params['event_id'].to_i
-        event = Event.find(event_id)
-        event_medalists = AthleteEvent.event_medalists(event_id)
-        serialized_medalists = MedalistsSerializer.new(event, event_medalists)
-        render status: 200, json: serialized_medalists.serialize
+        begin
+            event_id = params['event_id'].to_i
+            event = Event.find(event_id)
+            event_medalists = AthleteEvent.event_medalists(event_id)
+            serialized_medalists = MedalistsSerializer.new(event, event_medalists)
+            render status: 200, json: serialized_medalists.serialize
+        rescue
+            render status: 404, json: { error: "Event not found." }
+        end
     end
 end
