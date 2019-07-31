@@ -22,6 +22,7 @@ Welcome to the Olympians API, an individual project for Module 4 at Turing Schoo
 To run on your local machine, please FORK then clone this repository.
 Please ensure you have the latest version of Ruby on Rails found [here](https://guides.rubyonrails.org/getting_started.html).
 In a unix terminal, from the directory into which you cloned this repo, you may then run the commands:
+
 `bundle install`
 `rails db:schema:load`
 `rails import_from_csv:all_data`
