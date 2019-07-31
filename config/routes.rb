@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :athletes, only: [:index], path: 'olympians'
       resources :statistics, only: [:index], path: 'olympian_stats'
-      resources :events, only: [:index]
+      resources :events, only: [:index] do
+        get '/medalists', to: 'events#show'
+      end
     end
   end
 end
